@@ -1,24 +1,42 @@
 ﻿// Fig. 9.3: Employee.cs
-// Employee class with FirstName, LastName and MonthlySalary properties.
+
+/// <summary>
+///  Employee class with FirstName, LastName and MonthlySalary properties.
+/// </summary>
 public class Employee
 {
-   private decimal monthlySalaryValue; // monthly salary of employee
-   
-   // auto-implemented property FirstName
-   public string FirstName { get; set; }
+   /// <summary>
+   ///  monthly salary of employee
+   /// </summary>
+   private decimal monthlySalaryValue; 
 
-   // auto-implemented property LastName
+   /// <summary>
+   /// auto-implemented property FirstName
+   /// </summary>
+   public string FirstName { get; set; }
+  
+   /// <summary>
+   /// auto-implemented property LastName
+   /// </summary>
    public string LastName { get; set; }
 
-   // constructor initializes first name, last name and monthly salary
-   public Employee( string first, string last, decimal salary )
+   /// <summary>
+   /// constructor initializes first name, last name and monthly salary
+   /// </summary>
+   /// <param name="first"></param>
+   /// <param name="last"></param>
+   /// <param name="salary"></param>
+   public Employee(string first, string last, decimal salary)
    {
       FirstName = first;
       LastName = last;
       MonthlySalary = salary;
    } // end constructor
 
-   // property that gets and sets the employee's monthly salary
+
+   /// <summary>
+   /// property that gets and sets the employee's monthly salary  
+   /// </summary>
    public decimal MonthlySalary
    {
       get
@@ -27,18 +45,22 @@ public class Employee
       } // end get
       set
       {
-         if ( value >= 0M ) // if salary is non-negative
+         if (value >= 0M) // if salary is non-negative
          {
             monthlySalaryValue = value;
          } // end if
       } // end set
    } // end property MonthlySalary
 
-   // return a String containing the employee's information
-   public override string ToString() 
+   /// <summary>
+   /// Return a String containing the employee's information. 
+   /// É utilizado no Console.WriteLine(element);
+   /// </summary>
+   /// <returns>string</returns>
+   public override string ToString()
    {
-      return string.Format( "{0,-10} {1,-10} {2,10:C}", 
-         FirstName, LastName, MonthlySalary );
+      return string.Format("{0,-10} {1,-10} {2,10:C}",
+         FirstName, LastName, MonthlySalary);
    } // end method ToString
 } // end class Employee
 

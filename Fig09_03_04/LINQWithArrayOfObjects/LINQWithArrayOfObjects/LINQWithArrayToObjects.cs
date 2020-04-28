@@ -5,9 +5,13 @@ using System.Linq;
 
 public class LINQWithArrayOfObjects
 {
-   public static void Main( string[] args )
+   /// <summary>
+   /// Método principal do C# console
+   /// </summary>
+   /// <param name="args"></param>
+   public static void Main(string[] args)
    {
-      // initialize array of employees
+      // initialize array of employees   
       Employee[] employees = {
          new Employee( "Jason", "Red", 5000M ),
          new Employee( "Ashley", "Green", 7600M ),
@@ -18,37 +22,33 @@ public class LINQWithArrayOfObjects
          new Employee( "Wendy", "Brown", 4236.4M ) }; // end init list
 
       // display all employees
-      Console.WriteLine( "Original array:" ); 
-      foreach ( var element in employees )
-         Console.WriteLine( element );
+      Console.WriteLine("Original array:");
+      foreach (var element in employees)
+         Console.WriteLine(element);
 
-      // filter a range of salaries using && in a LINQ query
+      // filter a range of salaries using && in a LINQ query      
       var between4K6K =
          from e in employees
          where e.MonthlySalary >= 4000M && e.MonthlySalary <= 6000M
          select e;
-
       // display employees making between 4000 and 6000 per month
-      Console.WriteLine( string.Format(
-         "\nEmployees earning in the range {0:C}-{1:C} per month:",
-         4000, 6000 ) );
-      foreach ( var element in between4K6K )
-         Console.WriteLine( element );
+      Console.WriteLine(string.Format("\nEmployees earning in the range {0:C} until {1:C} per month:",
+         4000, 6000));
+      foreach (var element in between4K6K)
+         Console.WriteLine(element);
 
-      // order the employees by last name, then first name with LINQ
-      var nameSorted = 
-         from e in employees 
-         orderby e.LastName, e.FirstName 
+      // order the employees by first name, then last name with LINQ
+      var nameSorted =
+         from e in employees
+         orderby e.FirstName, e.LastName
          select e;
-
       // header
-      Console.WriteLine( "\nFirst employee when sorted by name:" ); 
-
+      Console.WriteLine("\nFirst employee when sorted by name:");
       // attempt to display the first result of the above LINQ query
-      if ( nameSorted.Any() )
-         Console.WriteLine( nameSorted.First() );
+      if (nameSorted.Any())
+         Console.WriteLine(nameSorted.First());
       else
-         Console.WriteLine( "not found" );
+         Console.WriteLine("not found");
 
       // use LINQ to select employee last names
       var lastNames =
@@ -56,21 +56,24 @@ public class LINQWithArrayOfObjects
          select e.LastName;
 
       // use method Distinct to select unique last names
-      Console.WriteLine( "\nUnique employee last names:" );
-      foreach ( var element in lastNames.Distinct() )
-         Console.WriteLine( element );
+      Console.WriteLine("\nUnique employee last names:");
+      foreach (var element in lastNames.Distinct())
+         Console.WriteLine(element);
 
       // use LINQ to select first and last names
       var names =
          from e in employees
+         orderby e.FirstName, e.LastName
          select new { e.FirstName, Last = e.LastName };
 
-      // display full names
-      Console.WriteLine( "\nNames only:" ); 
-      foreach ( var element in names )
-         Console.WriteLine( element );
+      // display full names, ordered by first name, then last name
+      Console.WriteLine("\nNames only, ordered by first name, then last name:");
+      foreach (var element in names)
+         Console.WriteLine(element);
 
       Console.WriteLine();
+      Console.WriteLine("\nTecle qualquer tecla para finalizar...");
+      Console.ReadKey();
    } // end Main
 } // end class LINQWithArrayOfObjects
 
