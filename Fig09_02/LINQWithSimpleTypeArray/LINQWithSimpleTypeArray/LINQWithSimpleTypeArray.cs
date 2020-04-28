@@ -69,7 +69,6 @@ class LINQWithSimpleTypeArray
          Console.Write(" {0}", element);
 
       Console.WriteLine();
-
       Console.WriteLine("\nTecle qualquer tecla para finalizar...");
       Console.ReadKey();
    } // end Main
